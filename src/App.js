@@ -3,6 +3,7 @@ const App = ({
 	player2Score,
 	onIncrementplayer1,
 	onIncrementplayer2,
+	onReset,
 }) => (
 	<>
 		{/* header */}
@@ -55,7 +56,9 @@ const App = ({
 		<hr />
 
 		{/* reset button */}
-		<button className="btn btn-danger">Reset</button>
+		<button className="btn btn-danger" onClick={onReset}>
+			Reset
+		</button>
 	</>
 );
 

@@ -22,6 +22,8 @@ let reducer = (state, action) => {
 				...state,
 				player2: state.player2 + 1,
 			};
+		case "RESET":
+			return initial;
 		default:
 			return state;
 	}
@@ -51,6 +53,7 @@ const render = () => {
 				player2Score={state.player2}
 				onIncrementplayer1={() => store.dispatch({ type: "INCREMENT PLAYER1" })}
 				onIncrementplayer2={() => store.dispatch({ type: "INCREMENT PLAYER2" })}
+				onReset={() => store.dispatch({ type: "RESET" })}
 			/>
 		</React.StrictMode>,
 		document.getElementById("root")
