@@ -10,18 +10,26 @@ const initial = {
 	player2: 0,
 };
 
+const player1Scores = (state) => {
+	return {
+		...state,
+		player1: state.player1 + 1,
+	};
+};
+
+const player2Scores = (state) => {
+	return {
+		...state,
+		player2: state.player2 + 1,
+	};
+};
+
 let reducer = (state, action) => {
 	switch (action.type) {
-		case "INCREMENT PLAYER1":
-			return {
-				...state,
-				player1: state.player1 + 1,
-			};
-		case "INCREMENT PLAYER2":
-			return {
-				...state,
-				player2: state.player2 + 1,
-			};
+		case "PLAYER_1_SCORES":
+			return player1Scores(state);
+		case "PLAYER_2_SCORES":
+			return player2Scores(state);
 		case "RESET":
 			return initial;
 		default:
@@ -51,8 +59,8 @@ const render = () => {
 			<App
 				player1Score={state.player1}
 				player2Score={state.player2}
-				onIncrementplayer1={() => store.dispatch({ type: "INCREMENT PLAYER1" })}
-				onIncrementplayer2={() => store.dispatch({ type: "INCREMENT PLAYER2" })}
+				onIncrementplayer1={() => store.dispatch({ type: "PLAYER_1_SCORES" })}
+				onIncrementplayer2={() => store.dispatch({ type: "PLAYER_2_SCORES" })}
 				onReset={() => store.dispatch({ type: "RESET" })}
 			/>
 		</React.StrictMode>,
