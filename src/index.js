@@ -20,7 +20,7 @@ let reducer = (state, action) => {
 		case "INCREMENT PLAYER2":
 			return {
 				...state,
-				player1: state.player2 + 1,
+				player2: state.player2 + 1,
 			};
 		default:
 			return state;
@@ -41,12 +41,24 @@ store.subscribe(() => {
 	console.log(state);
 });
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App player1Score={initial.player1} player2Score={initial.player2} />
-	</React.StrictMode>,
-	document.getElementById("root")
-);
+const render = () => {
+	let state = store.getState();
+
+	ReactDOM.render(
+		<React.StrictMode>
+			<App
+				player1Score={state.player1}
+				player2Score={state.player2}
+				onIncrementplayer1={() => store.dispatch({ type: "INCREMENT PLAYER1" })}
+				onIncrementplayer2={() => store.dispatch({ type: "INCREMENT PLAYER2" })}
+			/>
+		</React.StrictMode>,
+		document.getElementById("root")
+	);
+};
+
+store.subscribe(render); // render when state changes
+render(); // render when page loads using initial state
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
