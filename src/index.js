@@ -8,6 +8,7 @@ import { createStore } from "redux";
 const initial = {
 	player1: 0,
 	player2: 0,
+	p1Serving: true,
 };
 
 const player1Scores = (state) => {
@@ -24,12 +25,22 @@ const player2Scores = (state) => {
 	};
 };
 
+const server = (state) => {
+	return {
+		...state,
+		p1Serving:
+			(state.player1 + state.player2) % 5 === 0
+				? !state.p1Serving
+				: state.p1Serving,
+	};
+};
+
 let reducer = (state, action) => {
 	switch (action.type) {
 		case "PLAYER_1_SCORES":
-			return player1Scores(state);
+			return server(player1Scores(state));
 		case "PLAYER_2_SCORES":
-			return player2Scores(state);
+			return server(player2Scores(state));
 		case "RESET":
 			return initial;
 		default:
@@ -57,6 +68,7 @@ const render = () => {
 	ReactDOM.render(
 		<React.StrictMode>
 			<App
+				p1Serving={state.p1Serving}
 				player1Score={state.player1}
 				player2Score={state.player2}
 				onIncrementplayer1={() => store.dispatch({ type: "PLAYER_1_SCORES" })}

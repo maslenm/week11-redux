@@ -1,4 +1,5 @@
 const App = ({
+	p1Serving,
 	player1Score,
 	player2Score,
 	onIncrementplayer1,
@@ -14,7 +15,11 @@ const App = ({
 		{/* scores */}
 		<div className="row mb-4">
 			<div className="col-md-6 mt-4">
-				<div className="card text-center bg-dark text-white">
+				<div
+					className={`card text-center ${
+						p1Serving ? "bg-dark text-white" : ""
+					}`}
+				>
 					<h5 className="card-header">Player 1</h5>
 					<div className="card-body">
 						<p className="card-text display-1">{player1Score}</p>
@@ -31,7 +36,11 @@ const App = ({
 			</div>
 
 			<div className="col-md-6 mt-4">
-				<div className="card text-center">
+				<div
+					className={`card text-center ${
+						p1Serving ? "" : "bg-dark text-white"
+					}`}
+				>
 					<h5 className="card-header">Player 2</h5>
 					<div className="card-body">
 						<p className="card-text display-1">{player2Score}</p>
