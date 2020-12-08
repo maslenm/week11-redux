@@ -9,6 +9,7 @@ const initial = {
 	player1: 0,
 	player2: 0,
 	p1Serving: true,
+	winner: 0,
 };
 
 const player1Scores = (state) => {
@@ -35,12 +36,27 @@ const server = (state) => {
 	};
 };
 
+const won = (state) => {
+	let winner = 0;
+
+	if (state.player1 > 20) {
+		winner = 1;
+	} else if (state.player2 > 20) {
+		winner = 2;
+	}
+
+	return {
+		...state,
+		winner: winner,
+	};
+};
+
 let reducer = (state, action) => {
 	switch (action.type) {
 		case "PLAYER_1_SCORES":
-			return server(player1Scores(state));
+			return won(server(player1Scores(state)));
 		case "PLAYER_2_SCORES":
-			return server(player2Scores(state));
+			return won(server(player2Scores(state)));
 		case "RESET":
 			return initial;
 		default:
@@ -68,6 +84,7 @@ const render = () => {
 	ReactDOM.render(
 		<React.StrictMode>
 			<App
+				won={state.winner}
 				p1Serving={state.p1Serving}
 				player1Score={state.player1}
 				player2Score={state.player2}

@@ -1,4 +1,5 @@
 const App = ({
+	won,
 	p1Serving,
 	player1Score,
 	player2Score,
@@ -58,9 +59,9 @@ const App = ({
 		</div>
 
 		{/* winner message */}
-		<h2 className="alert alert-success">
-			Player {/* winning player here */} wins!
-		</h2>
+		{won ? (
+			<h2 className="alert alert-success">{`Player ${won} wins!`}</h2>
+		) : null}
 
 		<hr />
 
