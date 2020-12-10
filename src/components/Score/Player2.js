@@ -10,4 +10,8 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(Score);
+const mapDispatchToProps = (dispatch) => ({
+	handleScore: () => dispatch({ type: "PLAYER_2_SCORES" }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Score);

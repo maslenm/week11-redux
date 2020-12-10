@@ -9,11 +9,7 @@ import { Provider } from "react-redux";
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App
-				onIncrementplayer1={() => store.dispatch({ type: "PLAYER_1_SCORES" })}
-				onIncrementplayer2={() => store.dispatch({ type: "PLAYER_2_SCORES" })}
-				onReset={() => store.dispatch({ type: "RESET" })}
-			/>
+			<App />
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
