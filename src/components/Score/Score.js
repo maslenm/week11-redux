@@ -1,4 +1,10 @@
-const Score = ({ server, player, currentScore, handleClickPlayerScore }) => (
+const Score = ({
+	server,
+	player,
+	currentScore,
+	handleClickPlayerScore,
+	disabled,
+}) => (
 	<>
 		<div className="col-md-6 mt-4">
 			<div className={`card text-center ${server ? "bg-dark text-white" : ""}`}>
@@ -10,6 +16,7 @@ const Score = ({ server, player, currentScore, handleClickPlayerScore }) => (
 					<button
 						className="form-control btn btn-success"
 						onClick={handleClickPlayerScore}
+						disabled={disabled}
 					>
 						+
 					</button>
